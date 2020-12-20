@@ -5,7 +5,7 @@ public class Jukebox {
         if (position == 1){
             System.out.println("Пусть бегут неуклюже");
         }
-        else if (position == 0){
+        else if (position == 2){
             System.out.println("Спокойной ночи");
         }
         else {
@@ -15,7 +15,7 @@ public class Jukebox {
     public static void main(String[] args) {
         Jukebox play = new Jukebox();
         play.music(1);
-        play.music(0);
+        play.music(2);
         play.music(11);
     }
 }
