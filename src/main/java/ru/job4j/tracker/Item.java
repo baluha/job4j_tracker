@@ -17,4 +17,10 @@ public class Item {
         this.id = id;
     }
 
+    public void setId(int i) {
+    }
+
+    public int getId() {
+        return id;
+    }
 }
