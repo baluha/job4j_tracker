@@ -23,4 +23,11 @@ public class Item {
     public int getId() {
         return id;
     }
+
+    public void setName(String test1) {
+    }
+
+    public Object getName() {
+        return name;
+    }
 }
