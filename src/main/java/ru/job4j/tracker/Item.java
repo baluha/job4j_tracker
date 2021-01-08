@@ -30,4 +30,12 @@ public class Item {
     public Object getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
