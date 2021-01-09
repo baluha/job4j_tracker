@@ -15,6 +15,13 @@ public class Library {
             Book book = bk[i];
             System.out.println(book.getName() + " - " + book.getPageQuantity());
         }
+        Book tmp = bk[0];
+        bk[0] = bk[3];
+        bk[3] = tmp;
+        for (int i = 0; i < bk.length; i++) {
+            Book book = bk[i];
+            System.out.println(book.getName() + " - " + book.getPageQuantity());
+        }
         for (int i = 0; i < bk.length; i++) {
             Book book = bk[i];
             if (book.getName().equals("Clean code")) {
