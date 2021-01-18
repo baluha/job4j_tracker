@@ -10,6 +10,9 @@ public class StartUI {
         String datetimeColonPattern = "dd-MM-yyyy HH:mm:ss";
         DateTimeFormatter timeColonFormatter = DateTimeFormatter.ofPattern(datetimeColonPattern);
         System.out.println(timeColonFormatter.format(item.getCreated()));
+        Tracker tracker = new Tracker();
+        tracker.add(item);
+        System.out.println(item);
 
 
     }
