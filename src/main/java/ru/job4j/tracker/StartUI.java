@@ -13,8 +13,6 @@ public class StartUI {
         Tracker tracker = new Tracker();
         tracker.add(item);
         System.out.println(item);
-
-
     }
 
 }
