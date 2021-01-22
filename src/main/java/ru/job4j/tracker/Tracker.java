@@ -45,27 +45,31 @@ public class Tracker {
         return rsl;
     }
 
+    @Override
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
-        if(index == -1) {
-            return false;
-        } else items[index] = item;
-        items[index].setId(id);
-        return true;
+        boolean rsl = index != -1;
+        if (rsl) {
+            items[index] = item;
+        }
+        return rsl;
     }
+
+    @Override
     public boolean delete(int id) {
         int index = indexOf(id);
-        if (index == -1) {
-            return false;
+        boolean rsl = index != -1;
+        if (rsl) {
+            System.arraycopy(
+                    items,
+                    index + 1,
+                    items,
+                    size - 1,
+                    size - index);
+            items[size - 1] = null;
+            size--;
         }
-        System.arraycopy(
-                items,
-                index + 1,
-                items,
-                size - 1,
-                size - index);
-        items[size-1]=null;
-        size--;
+
         return true;
     }
 }
