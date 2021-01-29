@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 public class Matches {
     public static void main(String[] args) {
+        System.out.println("Смысл игры в следующем.");
+        System.out.println("На столе лежат 11 спичек.");
+        System.out.println("Два игрока по очереди берут от 1 до 3 спичек.");
+        System.out.println("Выигрывает тот, кто забрал последние спички.");
         Scanner input = new Scanner(System.in);
         System.out.println("Игра 11.");
         boolean turn = true;
