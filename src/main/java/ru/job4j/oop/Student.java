@@ -1,6 +1,6 @@
 package ru.job4j.oop;
 
-public class Student {
+public class Student extends Object {
 
     public void music() {
         for (int i = 0; i < 3; i++) {
