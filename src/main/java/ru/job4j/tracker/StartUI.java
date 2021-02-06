@@ -30,8 +30,7 @@ public class StartUI {
                 System.out.println("Enter name : ");
                 String name = scanner.nextLine();
                 Item item = new Item(name);
-                tracker.replace(id, item);
-                if (tracker.replace(id, item) == true)
+                if (tracker.replace(id, item))
                     System.out.println("Item successfully replaced!");
                 else {
                     System.out.println("Item replace error");
@@ -41,7 +40,7 @@ public class StartUI {
                 System.out.println("=== Delete Item ==="+ System.lineSeparator() +
                 "Enter item id : ");
                 int id = Integer.parseInt(scanner.nextLine());
-                if (tracker.delete (id) != false) {
+                if (tracker.delete (id)) {
                     tracker.delete(id);
                     System.out.println("Item deleted");
                 }
