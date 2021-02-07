@@ -10,34 +10,33 @@ public class StartUI {
     }
 
     public static void findAllItems(Input input, Tracker tracker) {
-        System.out.println("=== Showing all items ===" + System.lineSeparator());
+        System.out.println("=== Showing all items ===");
         tracker.findAll();
     }
 
     public static void editItem(Input input, Tracker tracker) {
-        System.out.println("=== Edit an item ===" + System.lineSeparator());
-        int id = Integer.valueOf(input.askStr("Enter ID to replace: "));
-        System.out.println();
+        System.out.println("=== Edit Item ====");
+        int id = Integer.valueOf(input.askStr("Enter id : "));
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         tracker.replace(id, item);
     }
 
     public static void deleteItem(Input input, Tracker tracker) {
-        System.out.println("=== Delete an item ===" + System.lineSeparator());
-        int id = Integer.valueOf(input.askStr("Enter item's ID: "));
+        System.out.println("=== Delete Item ===");
+        int id = Integer.valueOf(input.askStr("Enter item id : "));
         tracker.delete(id);
     }
 
     public static void findItemByID(Input input, Tracker tracker) {
-        System.out.println("=== Find an item by ID ===" + System.lineSeparator());
-        int id = Integer.valueOf(input.askStr("Enter ID: "));
+        System.out.println("===Find item by Id===");
+        int id = Integer.valueOf(input.askStr("Enter item id : "));
         tracker.findById(id);
     }
 
     public static void findItemByName(Input input, Tracker tracker) {
-        System.out.println("=== Find an item by Name ===" + System.lineSeparator());
-        String name = input.askStr("Enter name: ");
+        System.out.println("===Find items by name===");
+        String name = input.askStr("Enter item name : ");
         tracker.findByName(name);
     }
 
