@@ -11,7 +11,10 @@ public class StartUI {
 
     public static void findAllItems(Input input, Tracker tracker) {
         System.out.println("=== Showing all items ===");
-        tracker.findAll();
+        Item [] item = tracker.findAll();
+        for (int i = 0; i < item.length; i++) {
+            System.out.println(item[i]);
+        }
     }
 
     public static void editItem(Input input, Tracker tracker) {
@@ -20,24 +23,46 @@ public class StartUI {
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         tracker.replace(id, item);
+        if (tracker.replace(id, item))
+            System.out.println("Item successfully replaced!");
+        else {
+            System.out.println("Item replace error");
+        }
     }
 
     public static void deleteItem(Input input, Tracker tracker) {
         System.out.println("=== Delete Item ===");
         int id = Integer.valueOf(input.askStr("Enter item id : "));
-        tracker.delete(id);
+        if (tracker.delete (id)) {
+            System.out.println("Item deleted");
+        }
+        else {
+            System.out.println("Item not found");
+        }
     }
 
     public static void findItemByID(Input input, Tracker tracker) {
         System.out.println("===Find item by Id===");
         int id = Integer.valueOf(input.askStr("Enter item id : "));
-        tracker.findById(id);
+        Item item = tracker.findById(id);
+        if (item != null) {
+            System.out.println(item);
+        }
+        else System.out.println("Item not found");
     }
 
     public static void findItemByName(Input input, Tracker tracker) {
         System.out.println("===Find items by name===");
         String name = input.askStr("Enter item name : ");
-        tracker.findByName(name);
+        Item[] items = tracker.findByName(name);
+        if (items.length == 0) {
+            System.out.println("Error. Can't find items.");
+        }
+        else {
+            for (int i = 0; i < items.length; i++) {
+                System.out.println("Id = " + items[i].getId() + ", name = " + items[i].getName());
+            }
+        }
     }
 
     public void init(Input input, Tracker tracker) {
@@ -71,7 +96,6 @@ public class StartUI {
                 System.out.println("=== Delete Item ===");
                 int id = input.askInt("Enter item id : ");
                 if (tracker.delete (id)) {
-                    tracker.delete(id);
                     System.out.println("Item deleted");
                 }
                 else {
