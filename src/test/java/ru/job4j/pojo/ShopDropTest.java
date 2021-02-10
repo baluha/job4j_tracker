@@ -5,7 +5,6 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 import org.junit.Test;
-import ru.job4j.oop.Product;
 
 public class ShopDropTest {
 
