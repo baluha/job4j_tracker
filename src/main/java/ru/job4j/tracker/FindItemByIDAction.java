@@ -15,9 +15,8 @@ public class FindItemByIDAction implements UserAction{
             System.out.println(item);
             return true;
         }
-
         else System.out.println("Item not found");
-        return false;
+        return true;
     }
 }
 
