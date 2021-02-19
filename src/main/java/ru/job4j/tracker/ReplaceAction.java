@@ -11,7 +11,11 @@ public class ReplaceAction implements UserAction {
         int id = input.askInt("Enter id : ");
         String name = input.askStr("Enter name : ");
         Item item = new Item(name);
-        tracker.replace(id, item);
-            return true;
+        if (tracker.replace(id, item))
+            System.out.println("Item successfully replaced!");
+        else {
+            System.out.println("Item replace error");
+        }
+        return true;
     }
 }
