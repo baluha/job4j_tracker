@@ -14,8 +14,8 @@ public class FindItemByNameAction implements UserAction {
             System.out.println("Error. Can't find items.");
         }
         else {
-            for (int i = 0; i < items.length; i++) {
-                System.out.println("Id = " + items[i].getId() + ", name = " + items[i].getName());
+            for (Item item : items) {
+                System.out.println("Id = " + item.getId() + ", name = " + item.getName());
             }
         }
         return true;
