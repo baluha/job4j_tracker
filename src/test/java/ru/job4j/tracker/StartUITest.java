@@ -44,7 +44,7 @@ public class StartUITest {
                 String.valueOf(item.getId()), /* id сохраненной заявки в объект tracker. */
                 "replaced item"
         };
-        StartUI.replaceItem(new StubInput(answers), tracker);
+        tracker.replace(new StubInput(answers), tracker);
         Item replaced = tracker.findById(item.getId());
         assertThat(replaced.getName(), is("replaced item"));
     }
@@ -52,8 +52,7 @@ public class StartUITest {
     @Test
     public void whenDeleteItem() {
         Tracker tracker = new Tracker();
-        Item item = new Item();
-        item.setName("SomeName");
+        Item item = new Item("SomeName");
         tracker.add(item);
         int id = item.getId();
         tracker.delete(id);

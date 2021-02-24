@@ -7,14 +7,14 @@ public class StartUI {
         this.out = out;
     }
 
-    public static void createItem(Input input, Tracker tracker) {
+    public void createItem(Input input, Tracker tracker) {
         System.out.println("=== Create a new Item ====");
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         tracker.add(item);
     }
 
-    public static void findAllItems(Input input, Tracker tracker) {
+    public void findAllItems(Input input, Tracker tracker) {
         System.out.println("=== Showing all items ===");
         Item [] item = tracker.findAll();
         for (int i = 0; i < item.length; i++) {
@@ -22,50 +22,50 @@ public class StartUI {
         }
     }
 
-    public static void replaceItem(Input input, Tracker tracker) {
-        System.out.println("=== Edit Item ====");
+    public void replaceItem(Input input, Tracker tracker) {
+        out.println("=== Edit Item ====");
         int id = Integer.valueOf(input.askStr("Enter id : "));
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         tracker.replace(id, item);
         if (tracker.replace(id, item))
-            System.out.println("Item successfully replaced!");
+            out.println("Item successfully replaced!");
         else {
-            System.out.println("Item replace error");
+            out.println("Item replace error");
         }
     }
 
-    public static void deleteItem(Input input, Tracker tracker) {
-        System.out.println("=== Delete Item ===");
+    public void deleteItem(Input input, Tracker tracker) {
+        out.println("=== Delete Item ===");
         int id = Integer.valueOf(input.askStr("Enter item id : "));
         if (tracker.delete (id)) {
-            System.out.println("Item deleted");
+            out.println("Item deleted");
         }
         else {
-            System.out.println("Item not found");
+            out.println("Item not found");
         }
     }
 
-    public static void findItemByID(Input input, Tracker tracker) {
-        System.out.println("===Find item by Id===");
+    public void findItemByID(Input input, Tracker tracker) {
+        out.println("===Find item by Id===");
         int id = Integer.valueOf(input.askStr("Enter item id : "));
         Item item = tracker.findById(id);
         if (item != null) {
-            System.out.println(item);
+            out.println(item);
         }
-        else System.out.println("Item not found");
+        else out.println("Item not found");
     }
 
-    public static void findItemByName(Input input, Tracker tracker) {
-        System.out.println("===Find items by name===");
+    public void findItemByName(Input input, Tracker tracker) {
+       out.println("===Find items by name===");
         String name = input.askStr("Enter item name : ");
         Item[] items = tracker.findByName(name);
         if (items.length == 0) {
-            System.out.println("Error. Can't find items.");
+            out.println("Error. Can't find items.");
         }
         else {
             for (int i = 0; i < items.length; i++) {
-                System.out.println("Id = " + items[i].getId() + ", name = " + items[i].getName());
+                out.println("Id = " + items[i].getId() + ", name = " + items[i].getName());
             }
         }
     }
@@ -83,7 +83,7 @@ public class StartUI {
     private void showMenu(UserAction[] actions) {
                 out.println("Menu.");
         for (int index = 0; index < actions.length; index++) {
-            System.out.println(index + ". " + actions[index].name());
+            out.println(index + ". " + actions[index].name());
         }
     }
 
@@ -93,7 +93,13 @@ public class StartUI {
         Output output = new ConsoleOutput();
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new CreateAction(output), new ShowAllAction(output), new ReplaceAction(output), new DeleteItemAction(output), new FindItemByIDAction(output), new FindItemByNameAction(output), new ExitAction(output)
+                new CreateAction(output),
+                new ShowAllAction(output),
+                new ReplaceAction(output),
+                new DeleteItemAction(output),
+                new FindItemByIDAction(output),
+                new FindItemByNameAction(output),
+                new ExitAction(output)
         };
         new StartUI(output).init(input, tracker, actions);
     }
