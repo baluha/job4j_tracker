@@ -13,8 +13,8 @@ public class FactTest {
 
     @Test
     public void oneMoreCalc(){
-        Fact.calc(3);
-        int rsl = 3;
-        assertThat(rsl, is(3));
+       int exp = Fact.calc(3);
+        int rsl = 6;
+        assertThat(rsl, is(exp));
     }
 }
