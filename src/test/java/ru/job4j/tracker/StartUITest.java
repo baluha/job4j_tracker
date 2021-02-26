@@ -38,6 +38,43 @@ public class StartUITest {
         new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findAll()[0].getName(), is("Item name"));
     }
+
+
+    @Test
+    public void findItemByID() {
+        Output output = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Item1"));
+        Input input = new StubInput( new String[] {"0", String.valueOf(item.getId()), "1"} );
+        UserAction[] actions = {
+                new FindItemByIDAction(output),
+                new ExitAction(output)
+        };
+        new StartUI(output).init(input, tracker, actions);
+        assertThat(tracker.findById(item.getId()), is(item));
+    }
+
+    @Test
+    public void findItemByName() {
+        Output output = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("item1"));
+        Item item1 = tracker.add(new Item("item2"));
+        Item item2 = tracker.add(new Item("item3"));
+        Item item3 = tracker.add(new Item("item1"));
+        Item item4 = tracker.add(new Item("item4"));
+        Item[] items = tracker.findByName("item1");
+        Input input = new StubInput(
+                new String[] {"0", item.getName(), "1"}
+        );
+        UserAction[] actions = {
+                new FindItemByNameAction(output),
+                new ExitAction(output)
+        };
+        new StartUI(output).init(input, tracker, actions);
+        assertThat(tracker.findByName("item1"), is(items));
+    }
+
     @Test
     public void whenReplaceAnotherItem() {
         Output output = new StubOutput();
@@ -54,6 +91,27 @@ public class StartUITest {
         };
         new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
+    }
+
+    @Test
+    public void findAllItems() {
+        Output output = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("item"));
+        Item item1 = tracker.add(new Item("item1"));
+        Item item2 = tracker.add(new Item("item2"));
+        Item item3 = tracker.add(new Item("item3"));
+        Item item4 = tracker.add(new Item("item4"));
+        Item [] items = tracker.findAll();
+        Input in = new StubInput(
+                new String[] {"0", "1"}
+        );
+        UserAction[] actions = {
+                new ShowAllAction(output),
+                new ExitAction(output)
+        };
+        new StartUI(output).init(in, tracker, actions);
+        assertThat(tracker.findAll(), is(items));
     }
     @Test
     public void whenDeleteAnotherItem() {
@@ -82,5 +140,6 @@ public class StartUITest {
         tracker.delete(id);
         assertThat(tracker.findById(id), is(nullValue()));
     }
+
 }
 
