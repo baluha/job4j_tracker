@@ -24,18 +24,6 @@ public class StartUITest {
         ));
     }
 
-
-    @Test
-    public void whenDeleteItem() {
-        Tracker tracker = new Tracker();
-        Item item = new Item("SomeName");
-        tracker.add(item);
-        int id = item.getId();
-        tracker.delete(id);
-        assertThat(tracker.findById(id), is(nullValue()));
-    }
-
-
     @Test
     public void whenCreateItem() {
         Output output = new StubOutput();
@@ -83,6 +71,16 @@ public class StartUITest {
         };
         new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
+    }
+
+    @Test
+    public void whenDeleteItem() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("SomeName");
+        tracker.add(item);
+        int id = item.getId();
+        tracker.delete(id);
+        assertThat(tracker.findById(id), is(nullValue()));
     }
 }
 
