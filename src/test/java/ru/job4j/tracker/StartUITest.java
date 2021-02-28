@@ -20,7 +20,7 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 "Menu." + System.lineSeparator() +
-                        "0. Exit" + System.lineSeparator()
+                        "0. ===EXIT PROGRAM===" + System.lineSeparator()
         ));
     }
 
@@ -51,19 +51,22 @@ public class StartUITest {
                 new ExitAction(output)
         };
         new StartUI(output).init(input, tracker, actions);
-        assertThat(tracker.findById(item.getId()), is(item));
+        assertThat(output.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. ===Find item by Id==="  + System.lineSeparator() +
+                        "1. ===EXIT PROGRAM==="  + System.lineSeparator() +
+                        "Item{id=1, name='Item1'}" + System.lineSeparator() +
+                        "Menu." + System.lineSeparator() +
+                        "0. ===Find item by Id==="  + System.lineSeparator() +
+                        "1. ===EXIT PROGRAM===" + System.lineSeparator() ));
     }
+
 
     @Test
     public void findItemByName() {
         Output output = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("item1"));
-        Item item1 = tracker.add(new Item("item2"));
-        Item item2 = tracker.add(new Item("item3"));
-        Item item3 = tracker.add(new Item("item1"));
-        Item item4 = tracker.add(new Item("item4"));
-        Item[] items = tracker.findByName("item1");
         Input input = new StubInput(
                 new String[] {"0", item.getName(), "1"}
         );
@@ -72,7 +75,14 @@ public class StartUITest {
                 new ExitAction(output)
         };
         new StartUI(output).init(input, tracker, actions);
-        assertThat(tracker.findByName("item1"), is(items));
+        assertThat(output.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. ===Find items by name==="  + System.lineSeparator() +
+                        "1. ===EXIT PROGRAM==="  + System.lineSeparator() +
+                        "Id = 1, name = item1" + System.lineSeparator() +
+                        "Menu." + System.lineSeparator() +
+                        "0. ===Find items by name==="  + System.lineSeparator() +
+                        "1. ===EXIT PROGRAM===" + System.lineSeparator() ));
     }
 
     @Test
@@ -98,11 +108,6 @@ public class StartUITest {
         Output output = new StubOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("item"));
-        Item item1 = tracker.add(new Item("item1"));
-        Item item2 = tracker.add(new Item("item2"));
-        Item item3 = tracker.add(new Item("item3"));
-        Item item4 = tracker.add(new Item("item4"));
-        Item [] items = tracker.findAll();
         Input in = new StubInput(
                 new String[] {"0", "1"}
         );
@@ -111,7 +116,14 @@ public class StartUITest {
                 new ExitAction(output)
         };
         new StartUI(output).init(in, tracker, actions);
-        assertThat(tracker.findAll(), is(items));
+        assertThat(output.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. === Showing all items ==="  + System.lineSeparator() +
+                        "1. ===EXIT PROGRAM==="  + System.lineSeparator() +
+                        "Item{id=1, name='item'}" + System.lineSeparator() +
+                        "Menu." + System.lineSeparator() +
+                        "0. === Showing all items ==="  + System.lineSeparator() +
+                        "1. ===EXIT PROGRAM===" + System.lineSeparator() ));
     }
     @Test
     public void whenDeleteAnotherItem() {
