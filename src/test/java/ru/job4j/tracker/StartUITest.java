@@ -11,7 +11,7 @@ public class StartUITest {
     public void whenExit() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"0"}
+                new String[] {"1", "0"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
@@ -19,8 +19,13 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator() +
-                        "0. ===EXIT PROGRAM===" + System.lineSeparator()
+                String.format(
+                        "Menu.%n"
+                                + "0. ===EXIT PROGRAM===%n"
+                                + "Wrong input, you can select 0 ..0%n"
+                                + "Menu.%n"
+                                + "0. ===EXIT PROGRAM===%n"
+                )
         ));
     }
 
