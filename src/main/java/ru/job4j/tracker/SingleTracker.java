@@ -7,11 +7,7 @@ public class SingleTracker {
 
     private Tracker tracker = new Tracker();
 
-    public SingleTracker(Tracker tracker) {
-        this.tracker = tracker;
-    }
-
-    public SingleTracker() {
+    private SingleTracker() {
 
     }
 
@@ -21,7 +17,6 @@ public class SingleTracker {
        }
        return instance;
    }
-
 
     public Item add(Item item) {
         return tracker.add(item);
