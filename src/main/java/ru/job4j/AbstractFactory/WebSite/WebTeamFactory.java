@@ -1,17 +1,17 @@
-package ru.job4j.AbstractFactory.Banking;
+package ru.job4j.AbstractFactory.WebSite;
 
 import ru.job4j.AbstractFactory.Dev;
 import ru.job4j.AbstractFactory.ProjectTeamFactory;
 import ru.job4j.AbstractFactory.Tester;
 
-public class DevTeamFactory implements ProjectTeamFactory {
+public class WebTeamFactory implements ProjectTeamFactory {
     @Override
     public Dev getDev() {
-        return new JavaDev();
+        return new PhpDev();
     }
 
     @Override
     public Tester getTester() {
-        return new JavaTester();
+        return new WebTester();
     }
 }
