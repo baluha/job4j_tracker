@@ -1,16 +1,16 @@
 package ru.job4j.ooa;
 
-public class Airport {
+public final class Airport {
     public static void main(String[] args) {
-        final Airbus airbus = new Airbus(4, "A380");
+        final Airbus airbus = new Airbus( "A380");
         System.out.println(airbus);
         airbus.printModel();
-        airbus.printCountEngine();
+        airbus.printCountEngine(airbus.getName());
 
         Airbus secondAirbus = new Airbus("A320" );
         System.out.println(secondAirbus);
         secondAirbus.printModel();
-        secondAirbus.printCountEngine();
+        secondAirbus.printCountEngine(secondAirbus.getName());
 
     }
 }
