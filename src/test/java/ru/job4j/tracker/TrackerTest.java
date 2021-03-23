@@ -3,6 +3,9 @@ package ru.job4j.tracker;
 import static org.hamcrest.CoreMatchers.nullValue;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -48,8 +51,10 @@ public class TrackerTest {
         tracker.add(item3);
         tracker.add(item4);
         tracker.add(item5);
-        Item[] result = tracker.findByName("First");
-        Item[] expected = new Item[]{item1, item3};
+        List<Item> result = tracker.findByName("First");
+        List<Item> expected = new ArrayList<>();
+        expected.add(item1);
+        expected.add(item3);
         assertThat(result, is(expected));
     }
 
