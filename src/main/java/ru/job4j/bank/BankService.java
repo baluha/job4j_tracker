@@ -34,7 +34,7 @@ public class BankService {
     public Account findByRequisite(String passport, String requisite) {
         User user = findByPassport(passport);
         Account account = null;
-        if( user != null) {
+        if(user != null) {
             for (Account usrAcc : users.get(user)) {
                 if (usrAcc.getRequisite().equals(requisite)) {
                     account = usrAcc;
