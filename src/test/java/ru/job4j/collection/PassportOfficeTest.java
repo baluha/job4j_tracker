@@ -14,4 +14,13 @@ public class PassportOfficeTest {
         office.add(citizen);
         assertThat(office.get(citizen.getPassport()), is(citizen));
     }
+    @Test
+    public void addDuplicate() {
+        Citizen citizen = new Citizen("60186363fa", "Vasiliy Vasilievich");
+        Citizen citizen1 = new Citizen("60186363fa", "Vasiliy Ivanovich");
+        PassportOffice office = new PassportOffice();
+        office.add(citizen);
+        office.add(citizen1);
+        assertThat(office.get(citizen.getPassport()), is(citizen));
+    }
 }
