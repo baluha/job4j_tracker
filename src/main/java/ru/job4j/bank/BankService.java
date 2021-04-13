@@ -18,7 +18,6 @@ public class BankService {
             List<Account> userAcc = users.get(user);
             if (!userAcc.contains(account)) {
                 userAcc.add(account);
-                users.put(user, userAcc);
             }
         }
     }
