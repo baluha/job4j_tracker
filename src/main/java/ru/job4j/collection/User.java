@@ -13,14 +13,19 @@ public class User implements Comparable<User> {
 
     @Override
     public int compareTo(User o) {
-        int a = 0;
-        if(name.equals(o.name)) {
-            a = Integer.compare(age, o.age);
+        int compareVariable = name.compareTo(o.name);
+        if (compareVariable == 0) {
+            compareVariable = Integer.compare(age, o.age);
         }
-        else {
-            a = name.compareTo(o.name);
-        }
-        return a;
+        return compareVariable;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     @Override
@@ -28,8 +33,8 @@ public class User implements Comparable<User> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return age == user.age &&
-                Objects.equals(name, user.name);
+        return age == user.age
+                && Objects.equals(name, user.name);
     }
 
     @Override
