@@ -40,6 +40,7 @@ public class BankService {
             for (Account usrAcc : users.get(user)) {
                 if (usrAcc.getRequisite().equals(requisite)) {
                     account = usrAcc;
+                    break;
                 }
             }
         }
