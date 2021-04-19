@@ -34,7 +34,7 @@ public class TrackerTest {
     }
 
     @Test
-    public void WhenSearchByName() {
+    public void whenSearchByName() {
         Tracker tracker = new Tracker();
         Item item1 = new Item();
         Item item2 = new Item();

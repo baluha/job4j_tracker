@@ -8,7 +8,7 @@ import java.util.*;
 import static org.hamcrest.Matchers.lessThan;
 
 
-public class SortingJobsByValues {
+public class SortingJobsTest {
 private Job getUp;
 private Job brushTeeth;
 private Job fixBugs;
