@@ -8,8 +8,8 @@ import java.util.*;
 import static org.hamcrest.Matchers.lessThan;
 
 
-public class JobSorting {
-private Job getAp;
+public class SortingJobsByValues {
+private Job getUp;
 private Job brushTeeth;
 private Job fixBugs;
 private Job writeCode;
@@ -18,7 +18,7 @@ private Job goWalk;
 
 @Before
  public void setup () {
-    getAp = new Job("getUp" , 1);
+    getUp = new Job("getUp" , 1);
     brushTeeth = new Job("brush teeth", 2);
     fixBugs = new Job("fix bugs", 3);
     writeCode = new Job("write code", 2);
@@ -26,41 +26,34 @@ private Job goWalk;
     goWalk = new Job("go walk",2);
 }
 
-/*    Job getAp = new Job("getUp" , 1);
-    Job brushTeeth = new Job("brush teeth", 2);
-    Job fixBugs = new Job("fix bugs", 3);
-    Job writeCode = new Job("write code", 2);
-    Job writingCodeRightNow = new Job("write code", 1);
-    Job goWalk = new Job("go walk",2);*/
-
     @Test
     public void ByNameAscending() {
-        List<Job> jobs = Arrays.asList(getAp, fixBugs, brushTeeth);
-        List<Job> exp = Arrays.asList(brushTeeth, fixBugs, getAp);
+        List<Job> jobs = Arrays.asList(getUp, fixBugs, brushTeeth);
+        List<Job> exp = Arrays.asList(brushTeeth, fixBugs, getUp);
         Collections.sort(jobs, new JobDescByNameAscending());
         assertThat(jobs, is (exp));
     }
 
     @Test
     public void ByNameDescending() {
-        List<Job> jobs = Arrays.asList(getAp, fixBugs, brushTeeth);
-        List<Job> exp = Arrays.asList(getAp, fixBugs, brushTeeth);
+        List<Job> jobs = Arrays.asList(getUp, fixBugs, brushTeeth);
+        List<Job> exp = Arrays.asList(getUp, fixBugs, brushTeeth);
         Collections.sort(jobs, new JobDescByNameDescending());
         assertThat(jobs, is (exp));
     }
 
     @Test
     public void ByPriorityAscending() {
-        List<Job> jobs = Arrays.asList(getAp, fixBugs, brushTeeth);
-        List<Job> exp = Arrays.asList(getAp, brushTeeth, fixBugs);
+        List<Job> jobs = Arrays.asList(getUp, fixBugs, brushTeeth);
+        List<Job> exp = Arrays.asList(getUp, brushTeeth, fixBugs);
         Collections.sort(jobs, new JobDescByPriorityAscending());
         assertThat(jobs, is (exp));
     }
 
     @Test
     public void ByPriorityDescending() {
-        List<Job> jobs = Arrays.asList(getAp, fixBugs, brushTeeth);
-        List<Job> exp = Arrays.asList(fixBugs, brushTeeth, getAp);
+        List<Job> jobs = Arrays.asList(getUp, fixBugs, brushTeeth);
+        List<Job> exp = Arrays.asList(fixBugs, brushTeeth, getUp);
         Collections.sort(jobs, new JobDescByPriorityDescending());
         assertThat(jobs, is (exp));
     }
