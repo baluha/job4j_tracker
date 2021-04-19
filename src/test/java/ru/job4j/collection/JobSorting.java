@@ -1,5 +1,6 @@
 package ru.job4j.collection;
 
+import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -8,13 +9,29 @@ import static org.hamcrest.Matchers.lessThan;
 
 
 public class JobSorting {
+private Job getAp;
+private Job brushTeeth;
+private Job fixBugs;
+private Job writeCode;
+private Job writingCodeRightNow;
+private Job goWalk;
 
-    Job getAp = new Job("getUp" , 1);
+@Before
+ public void setup () {
+    getAp = new Job("getUp" , 1);
+    brushTeeth = new Job("brush teeth", 2);
+    fixBugs = new Job("fix bugs", 3);
+    writeCode = new Job("write code", 2);
+    writingCodeRightNow = new Job("write code", 1);
+    goWalk = new Job("go walk",2);
+}
+
+/*    Job getAp = new Job("getUp" , 1);
     Job brushTeeth = new Job("brush teeth", 2);
     Job fixBugs = new Job("fix bugs", 3);
     Job writeCode = new Job("write code", 2);
     Job writingCodeRightNow = new Job("write code", 1);
-    Job goWalk = new Job("go walk",2);
+    Job goWalk = new Job("go walk",2);*/
 
     @Test
     public void ByNameAscending() {
