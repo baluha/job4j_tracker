@@ -78,7 +78,7 @@ public class StartUI {
         while (run) {
             this.showMenu(actions);
             int select = input.askInt("Select: ");
-            if(select < 0 || select >= actions.size()){
+            if (select < 0 || select >= actions.size()) {
                 out.println("Wrong input, you can select 0 .." + (actions.size()));
                 continue;
             }
@@ -93,7 +93,6 @@ public class StartUI {
             out.println(index + ". " + actions.get(index).name());
         }
     }
-
 
     public static void main(String[] args) {
         Output output = new ConsoleOutput();

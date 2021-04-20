@@ -47,5 +47,4 @@ public class Profession {
         this.birthday = birthday;
     }
 
-
 }

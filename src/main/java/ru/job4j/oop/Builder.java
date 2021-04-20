@@ -2,7 +2,7 @@ package ru.job4j.oop;
 
 import java.time.LocalDate;
 
-public class Builder extends Engineer{
+public class Builder extends Engineer {
     private int salary;
     private int specialization;
 
@@ -17,7 +17,7 @@ public class Builder extends Engineer{
     public void setSpecialization(int specialization) {
         this.specialization = specialization;
     }
-    public void build(Material material){
 
+    public void build(Material material) {
     }
 }

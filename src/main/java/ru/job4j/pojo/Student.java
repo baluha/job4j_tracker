@@ -1,31 +1,31 @@
 package ru.job4j.pojo;
 
 public class Student {
-    private String FullName;
-    private String Group;
-    private int ReceiptDate;
+    private String fullName;
+    private String group;
+    private int receiptDate;
 
     public String getFullName() {
-        return FullName;
+        return fullName;
     }
 
     public void setFullName(String fullName) {
-        FullName = fullName;
+        fullName = fullName;
     }
 
     public String getGroup() {
-        return Group;
+        return group;
     }
 
     public void setGroup(String group) {
-        Group = group;
+        group = group;
     }
 
     public int getReceiptDate() {
-        return ReceiptDate;
+        return receiptDate;
     }
 
     public void setReceiptDate(int receiptDate) {
-        ReceiptDate = receiptDate;
+        receiptDate = receiptDate;
     }
 }

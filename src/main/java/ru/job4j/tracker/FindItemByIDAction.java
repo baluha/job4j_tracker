@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-public class FindItemByIDAction implements UserAction{
+public class FindItemByIDAction implements UserAction {
 
     private  final Output out;
 
@@ -20,8 +20,9 @@ public class FindItemByIDAction implements UserAction{
         if (item != null) {
             out.println(item);
             return true;
+        } else {
+            out.println("Item not found");
         }
-        else out.println("Item not found");
         return true;
     }
 }

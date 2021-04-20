@@ -9,7 +9,7 @@ public class UsageMap {
         map.put("petrov@mail.ru", "Petrov Petr Petrovich");
         map.put("ivanov@mail.ru", "Ivanov Ivan Ivanovich");
         map.put("sidorov@mail.ru", "Sidorov Sergei Sergeevich");
-        for ( String key: map.keySet()) {
+        for (String key: map.keySet()) {
             String value = map.get(key);
             System.out.println(key + " = " + value);
         }

@@ -9,6 +9,7 @@ public class FindItemByNameAction implements UserAction {
     public FindItemByNameAction(Output out) {
         this.out = out;
     }
+
     @Override
     public String name() {
         return "===Find items by name===";
@@ -20,8 +21,7 @@ public class FindItemByNameAction implements UserAction {
         List<Item> items = tracker.findByName(name);
         if (items.size() == 0) {
            out.println("Error. Can't find items.");
-        }
-        else {
+        } else {
             for (Item item : items) {
                 out.println("Id = " + item.getId() + ", name = " + item.getName());
             }

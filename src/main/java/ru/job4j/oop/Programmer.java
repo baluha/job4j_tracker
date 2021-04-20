@@ -2,7 +2,7 @@ package ru.job4j.oop;
 
 import java.time.LocalDate;
 
-public class Programmer extends Engineer{
+public class Programmer extends Engineer {
     private int hoursWorkDay;
     private int salary;
 
@@ -18,6 +18,6 @@ public class Programmer extends Engineer{
         return hoursWorkDay;
     }
 
-    public void writeCode(Keyboard keyboard){
+    public void writeCode(Keyboard keyboard) {
     }
 }

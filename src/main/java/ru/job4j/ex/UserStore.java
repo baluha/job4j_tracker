@@ -23,7 +23,6 @@ public class UserStore {
         return user.isValid();
     }
 
-
     public static void main(String[] args) {
         User[] users = {
                 new User("Petr Arsentev", true)
@@ -33,11 +32,9 @@ public class UserStore {
             if (validate(user)) {
                 System.out.println("This user has an access");
             }
-        }
-        catch (UserInvalidException e) {
+        } catch (UserInvalidException e) {
             e.printStackTrace();
-        }
-        catch (UserNotFoundException nfe) {
+        } catch (UserNotFoundException nfe) {
             nfe.printStackTrace();
         }
     }

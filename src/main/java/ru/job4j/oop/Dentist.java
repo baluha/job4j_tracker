@@ -11,8 +11,9 @@ public class Dentist extends Doctor {
         super(name, surname, education, birthday);
     }
 
-    public void learn(Equipment equipment){
+    public void learn(Equipment equipment) {
     }
-    public void human(Patient patient){
+
+    public void human(Patient patient) {
     }
 }

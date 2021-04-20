@@ -13,7 +13,7 @@ public class SingleTracker {
 
     }
 
-    public static SingleTracker getInstance(){
+    public static SingleTracker getInstance() {
        if (instance == null) {
            instance = new SingleTracker();
        }
@@ -36,7 +36,7 @@ public class SingleTracker {
         return tracker.findAll();
     }
 
-    public boolean replace(int id, Item item){
+    public boolean replace(int id, Item item) {
        return tracker.replace(id, item);
     }
 

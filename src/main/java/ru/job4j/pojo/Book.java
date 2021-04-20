@@ -1,27 +1,27 @@
 package ru.job4j.pojo;
 
 public class Book {
-    private String Name;
-    private int PageQuantity;
+    private String name;
+    private int pageQuantity;
 
     public Book(String name, int pageQuantity) {
-        Name = name;
-        PageQuantity = pageQuantity;
+        this.name = name;
+        this.pageQuantity = pageQuantity;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public int getPageQuantity() {
-        return PageQuantity;
+        return pageQuantity;
     }
 
     public void setPageQuantity(int pageQuantity) {
-        PageQuantity = pageQuantity;
+        this.pageQuantity = pageQuantity;
     }
 }
