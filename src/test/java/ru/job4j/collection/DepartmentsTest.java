@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 
 public class DepartmentsTest {
     @Test
@@ -30,4 +31,5 @@ public class DepartmentsTest {
         List<String> result = Departments.fillGaps(input);
         assertThat(result, is(expect));
     }
+
 }

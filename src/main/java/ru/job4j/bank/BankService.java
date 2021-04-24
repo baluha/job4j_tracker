@@ -25,7 +25,7 @@ public class BankService {
     /**
      * Метод принимает на вход объект типа User, который является
      * ключем, и если такой пользователь не найден, добавляет его в HashMap.
-     * @param user пользователь, если такого еще нет, то он добавляется в HashMap.
+     * @param user пользователь , если такого еще нет, то он добавляется в HashMap.
      */
     public void addUser(User user) {
         users.putIfAbsent(user, new ArrayList<>());
