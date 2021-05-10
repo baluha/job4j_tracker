@@ -41,13 +41,11 @@ public class FunctionalInterfaces {
         Function<String, String> func = s -> s.toUpperCase();
         for (String s : strings) {
            con.accept(func.apply(s));
-
             /*
                 Заменить вывод строк на применение Consumer
                 Заменить преобразование строк к строкам в верхнем регистре с помощью Function
                 Необходимое объявлено выше, требуется их реализовать.
             */
-
         }
     }
 }
