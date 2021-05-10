@@ -33,14 +33,8 @@ public class FunctionalInterfaces {
         /*
             Заменить создание ArrayList из значений Map на Supplier, объявлен ниже, требуется его реализовать.
          */
-        Supplier<List<String>> sup = () -> {
-            List<String> lst = new ArrayList<>();
-            for (Integer i: map.keySet()) {
-                String s = map.get(i);
-                lst.add(s);
-            }
-            return lst;
-        };
+        Supplier<List<String>> sup = () -> new ArrayList<>(map.values());
+        
         List<String> strings = new ArrayList<>(sup.get());
 
         Consumer<String> con = s -> System.out.println(s);
