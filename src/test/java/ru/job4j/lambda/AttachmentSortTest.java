@@ -26,7 +26,7 @@ public class AttachmentSortTest {
     }
     @Test
     public void cmpLengthStr() {
-        Comparator<Attachment> cmpDescSize = (left, right) -> right.getName().length() - left.getName().length();
+        Comparator<Attachment> cmpDescSize = (left, right) -> Integer.compare(right.getName().length(), left.getName().length());
         List<Attachment> lst = Arrays.asList(
                 new Attachment("image 123", 108),
                 new Attachment("image 4", 250),
