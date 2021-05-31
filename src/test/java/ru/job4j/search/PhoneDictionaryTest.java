@@ -22,8 +22,7 @@ public class PhoneDictionaryTest {
         PhoneDictionary phones = new PhoneDictionary();
         phones.add(new Person ("Vasia", "Vasiliev", "35480", "Moscow" )
         );
-        ArrayList<Person> exp = new ArrayList<>();
         ArrayList<Person> persons = phones.find("viktor");
-        assertThat(persons, is(exp));
+        assertTrue(persons.isEmpty());
     }
 }
