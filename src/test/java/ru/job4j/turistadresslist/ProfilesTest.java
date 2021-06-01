@@ -31,4 +31,29 @@ public class ProfilesTest {
         assertThat(exp, is(rsl));
 
     }
+
+    @Test
+    public void collectWhenDuplicates() {
+        Profile profile = new Profile(
+                new Address("Moscow", "Krasnopresnenskaya", 3, 3)
+        );
+        Profile profile2 = new Profile(
+                new Address("Moscow", "Krasnopresnenskaya", 3, 2)
+        );
+        Profile profile3 = new Profile(
+                new Address("Moscow", "Krasnopresnenskaya", 3, 1)
+        );
+        Profile profile4 = new Profile(
+                new Address("Moscow", "Krasnopresnenskaya", 3, 1)
+        );
+        List<Profile> profiles = List.of(profile, profile2, profile3, profile4);
+        List<Address> exp = profiles.stream()
+                .map(Profile::getAddress)
+                .sorted((o1, o2) -> o1.getCity().compareTo(o2.getCity()))
+                .distinct()
+                .collect(Collectors.toList());
+        Profiles func = new Profiles();
+        List<Address> rsl = func.collect(profiles);
+        assertThat(exp, is(rsl));
+    }
 }
