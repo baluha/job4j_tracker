@@ -3,6 +3,7 @@ package ru.job4j.turistadresslist;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,7 +50,7 @@ public class ProfilesTest {
         List<Profile> profiles = List.of(profile, profile2, profile3, profile4);
         List<Address> exp = profiles.stream()
                 .map(Profile::getAddress)
-                .sorted((o1, o2) -> o1.getCity().compareTo(o2.getCity()))
+                .sorted(Comparator.comparing(Address::getCity))
                 .distinct()
                 .collect(Collectors.toList());
         Profiles func = new Profiles();
