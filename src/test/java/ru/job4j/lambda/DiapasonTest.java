@@ -24,7 +24,7 @@ public class DiapasonTest {
     }
 
     @Test
-    public void whenExponentialАFunc() {
+    public void whenExpFunc() {
         List<Double> rsl = Diapason.diapason(4, 8, x -> Math.pow(2, x));
         List<Double> exp = Arrays.asList(16.0, 32.0, 64.0, 128.0);
         assertThat(rsl, is(exp));

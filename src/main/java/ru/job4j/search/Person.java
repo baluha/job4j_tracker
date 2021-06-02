@@ -42,13 +42,17 @@ public class Person {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Person person = (Person) o;
-        return Objects.equals(name, person.name) &&
-                Objects.equals(surname, person.surname) &&
-                Objects.equals(phone, person.phone) &&
-                Objects.equals(address, person.address);
+        return Objects.equals(name, person.name)
+                && Objects.equals(surname, person.surname)
+                && Objects.equals(phone, person.phone)
+                && Objects.equals(address, person.address);
     }
 
     @Override

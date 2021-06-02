@@ -24,9 +24,11 @@ public class AttachmentSortTest {
         Collections.sort(lst, cmpText);
         assertThat(lst, is(exp));
     }
+
     @Test
     public void cmpLengthStr() {
-        Comparator<Attachment> cmpDescSize = (left, right) -> Integer.compare(right.getName().length(), left.getName().length());
+        Comparator<Attachment> cmpDescSize = (left, right) ->
+                Integer.compare(right.getName().length(), left.getName().length());
         List<Attachment> lst = Arrays.asList(
                 new Attachment("image 123", 108),
                 new Attachment("image 4", 250),

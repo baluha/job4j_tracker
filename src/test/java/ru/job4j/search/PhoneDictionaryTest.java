@@ -17,10 +17,11 @@ public class PhoneDictionaryTest {
         ArrayList<Person> persons = phones.find("Petr");
         assertThat(persons.get(0).getSurname(), is("Arsentev"));
     }
+
     @Test
     public void whenFindNothing() {
         PhoneDictionary phones = new PhoneDictionary();
-        phones.add(new Person ("Vasia", "Vasiliev", "35480", "Moscow" )
+        phones.add(new Person("Vasia", "Vasiliev", "35480", "Moscow")
         );
         ArrayList<Person> persons = phones.find("viktor");
         assertTrue(persons.isEmpty());

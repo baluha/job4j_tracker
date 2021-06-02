@@ -11,7 +11,8 @@ public class FunctionalInterfaces {
         Map<Integer, String> map = new HashMap<>();
         BiConsumer<Integer, String> biCon = (s, s1) -> map.put(s, s1);
         /*
-            Замените вставку элементов в карту на использование BiConsumer, он уже объявлен, требуется его реализовать.
+            Замените вставку элементов в карту на использование BiConsumer,
+             он уже объявлен, требуется его реализовать.
          */
         biCon.accept(1, "one");
         biCon.accept(2, "two");
@@ -24,14 +25,16 @@ public class FunctionalInterfaces {
         BiPredicate<Integer, String> biPred = (s, s1) -> s % 2 == 0 || s1.length() == 4;
         for (Integer i : map.keySet()) {
             /*
-                Замените проверку в if() на использование BiPredicate, он объявлен выше, требуется его реализовать.
+                Замените проверку в if() на использование BiPredicate,
+                 он объявлен выше, требуется его реализовать.
              */
             if (biPred.test(i, map.get(i))) {
                 System.out.println("key: " + i + " value: " + map.get(i));
             }
         }
         /*
-            Заменить создание ArrayList из значений Map на Supplier, объявлен ниже, требуется его реализовать.
+            Заменить создание ArrayList из значений Map на Supplier,
+             объявлен ниже, требуется его реализовать.
          */
         Supplier<List<String>> sup = () -> new ArrayList<>(map.values());
         List<String> strings = new ArrayList<>(sup.get());
