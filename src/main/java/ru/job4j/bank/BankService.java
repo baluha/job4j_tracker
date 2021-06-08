@@ -54,15 +54,11 @@ public class BankService {
      * , если такого не найдено возвращает null.
      */
     public User findByPassport(String passport) {
-        User user = null;
-        for (User us : users.keySet()) {
-            if (us.getPassport().equals(passport)) {
-                user = us;
-                break;
-            }
+       return users.keySet()
+               .stream().filter(s -> s.getPassport().equals(passport))
+               .findFirst()
+               .orElse(null);
         }
-        return user;
-    }
 
     /**
      * Метод, принимающий на вход паспортные данные пользователя и реквизиты аккаунта.
@@ -74,46 +70,43 @@ public class BankService {
      */
     public Account findByRequisite(String passport, String requisite) {
         User user = findByPassport(passport);
-        Account account = null;
         if (user != null) {
-            for (Account usrAcc : users.get(user)) {
-                if (usrAcc.getRequisite().equals(requisite)) {
-                    account = usrAcc;
-                    break;
-                }
-            }
+            return users.get(user)
+                    .stream()
+                    .filter(s -> s.getRequisite().equals(requisite))
+                    .findFirst().orElse(null);
         }
-        return account;
+        return null;
     }
 
-    /**
-     * Метод, осуществляющие перевод денег одного аккаунта на другой.
-     * Принимает на вход паспортные данные и реквизиты
-     * аккаунтна пользователя у которого спишутся средства
-     * и паспортные данные и реквизиты аккаунтна пользователя
-     * к которому стредства переведуться, а так же
-     * саму сумму.
-     * @param srcPassport паспортные данные пользователя
-     *                    у которого спишутся средства
-     * @param srcRequisite реквизиты аккаунта пользователя,
-     *                    с которого спишутся средства
-     * @param destPassport паспортные данные пользователя
-     *                    к которому стредства переведуться
-     * @param destRequisite реквизиты аккаунта пользователя
-     *                      , к которому стредства переведуться
-     * @param amount сумма перевода
-     * @return возвращает boolean переменную об успешности операции
-     */
-    public boolean transferMoney(String srcPassport, String srcRequisite,
-                                 String destPassport, String destRequisite, double amount) {
-        boolean rsl = false;
-        Account src = findByRequisite(srcPassport, srcRequisite);
-        Account dest = findByRequisite(destPassport, destRequisite);
-        if (src != null && src.getBalance() >= amount && dest != null) {
-            src.setBalance(src.getBalance() - amount);
-            dest.setBalance(dest.getBalance() + amount);
-            rsl = true;
+        /**
+         * Метод, осуществляющие перевод денег одного аккаунта на другой.
+         * Принимает на вход паспортные данные и реквизиты
+         * аккаунтна пользователя у которого спишутся средства
+         * и паспортные данные и реквизиты аккаунтна пользователя
+         * к которому стредства переведуться, а так же
+         * саму сумму.
+         * @param srcPassport паспортные данные пользователя
+         *                    у которого спишутся средства
+         * @param srcRequisite реквизиты аккаунта пользователя,
+         *                    с которого спишутся средства
+         * @param destPassport паспортные данные пользователя
+         *                    к которому стредства переведуться
+         * @param destRequisite реквизиты аккаунта пользователя
+         *                      , к которому стредства переведуться
+         * @param amount сумма перевода
+         * @return возвращает boolean переменную об успешности операции
+         */
+        public boolean transferMoney(String srcPassport, String srcRequisite,
+                String destPassport, String destRequisite, double amount) {
+            boolean rsl = false;
+            Account src = findByRequisite(srcPassport, srcRequisite);
+            Account dest = findByRequisite(destPassport, destRequisite);
+            if (src != null && src.getBalance() >= amount && dest != null) {
+                src.setBalance(src.getBalance() - amount);
+                dest.setBalance(dest.getBalance() + amount);
+                rsl = true;
+            }
+            return rsl;
         }
-        return rsl;
     }
-}
