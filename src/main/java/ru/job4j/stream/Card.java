@@ -1,8 +1,5 @@
 package ru.job4j.stream;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class Card {
@@ -14,7 +11,6 @@ public class Card {
         this.value = value;
     }
 
-
     public enum Suit {
         Diamonds, Hearts, Spades, Clubs
     }
@@ -25,10 +21,10 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "suit=" + suit +
-                ", value=" + value +
-                '}';
+        return "Card{"
+                + "suit=" + suit
+                + ", value=" + value
+                + '}';
     }
 
     public static void main(String[] args) {
