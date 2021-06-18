@@ -23,12 +23,20 @@ public class Card {
         V_2, V_3, V_4, V_5, V_6, V_7, V_8, V_9, V_10, JACK, QUEEN, KING, ACE, JOKER
     }
 
+    @Override
+    public String toString() {
+        return "Card{" +
+                "suit=" + suit +
+                ", value=" + value +
+                '}';
+    }
+
     public static void main(String[] args) {
         Suit[] suits = Suit.values();
         Value[] values = Value.values();
         Stream.of(suits)
                 .flatMap(suit -> Stream.of(values)
-                        .map(value -> suit + " " + value))
+                        .map(value -> new Card(suit, value)))
                 .forEach(System.out::println);
     }
 }
