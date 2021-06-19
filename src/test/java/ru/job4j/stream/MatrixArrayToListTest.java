@@ -13,10 +13,10 @@ public class MatrixArrayToListTest {
     public void toList() {
         MatrixArrayToList matrixArrayToList = new MatrixArrayToList();
         Integer[][] matrix = new Integer[][]{
-                {1,2}, {3,4}
+                {1, 2}, {3, 4}
         };
         List<Integer> rsl = matrixArrayToList.lst(matrix);
-        List<Integer> exp = List.of(1,2,3,4);
+        List<Integer> exp = List.of(1, 2, 3, 4);
         assertThat(rsl, is(exp));
     }
 
