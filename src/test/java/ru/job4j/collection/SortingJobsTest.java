@@ -28,7 +28,7 @@ private Job goWalk;
     @Test
     public void byNameAscending() {
         List<Job> jobs = Arrays.asList(getUp, fixBugs, brushTeeth);
-        List<Job> exp = Arrays.asList(brushTeeth, fixBugs, getUp);
+        List<Job> exp = List.of(brushTeeth, fixBugs, getUp);
         Collections.sort(jobs, new JobDescByNameAscending());
         assertThat(jobs, is(exp));
     }
@@ -36,7 +36,7 @@ private Job goWalk;
     @Test
     public void byNameDescending() {
         List<Job> jobs = Arrays.asList(getUp, fixBugs, brushTeeth);
-        List<Job> exp = Arrays.asList(getUp, fixBugs, brushTeeth);
+        List<Job> exp = List.of(getUp, fixBugs, brushTeeth);
         Collections.sort(jobs, new JobDescByNameDescending());
         assertThat(jobs, is(exp));
     }
