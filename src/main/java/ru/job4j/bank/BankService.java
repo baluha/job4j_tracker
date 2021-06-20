@@ -38,7 +38,7 @@ public class BankService {
      * @param account аккаунт, который добавится, если такого еще нет в системе.
      */
     public void addAccount(String passport, Account account) {
-        User user = findByPassport(passport);
+        var user = findByPassport(passport);
         if (user != null) {
             List<Account> userAcc = users.get(user);
             if (!userAcc.contains(account)) {
@@ -69,12 +69,13 @@ public class BankService {
      * @return возвращет аккаунт, если такой есть, иначе возвращает null/
      */
     public Account findByRequisite(String passport, String requisite) {
-        User user = findByPassport(passport);
+        var user = findByPassport(passport);
         if (user != null) {
             return users.get(user)
                     .stream()
                     .filter(s -> s.getRequisite().equals(requisite))
-                    .findFirst().orElse(null);
+                    .findFirst()
+                    .orElse(null);
         }
         return null;
     }
@@ -100,8 +101,8 @@ public class BankService {
         public boolean transferMoney(String srcPassport, String srcRequisite,
                 String destPassport, String destRequisite, double amount) {
             boolean rsl = false;
-            Account src = findByRequisite(srcPassport, srcRequisite);
-            Account dest = findByRequisite(destPassport, destRequisite);
+            var src = findByRequisite(srcPassport, srcRequisite);
+            var dest = findByRequisite(destPassport, destRequisite);
             if (src != null && src.getBalance() >= amount && dest != null) {
                 src.setBalance(src.getBalance() - amount);
                 dest.setBalance(dest.getBalance() + amount);
