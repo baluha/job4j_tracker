@@ -1,9 +1,6 @@
 package ru.job4j.bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Класс описывает логику простейших банковских опреций, таких как: добваление
@@ -38,8 +35,8 @@ public class BankService {
      * @param account аккаунт, который добавится, если такого еще нет в системе.
      */
     public void addAccount(String passport, Account account) {
-        var user = findByPassport(passport);
-        if (user != null) {
+        Optional<User> user = findByPassport(passport);
+        if (user.isPresent()) {
             List<Account> userAcc = users.get(user);
             if (!userAcc.contains(account)) {
                 userAcc.add(account);
@@ -53,11 +50,10 @@ public class BankService {
      * @return возвращает пользователя, по паспортным данным
      * , если такого не найдено возвращает null.
      */
-    public User findByPassport(String passport) {
+    public Optional<User> findByPassport(String passport) {
        return users.keySet()
                .stream().filter(s -> s.getPassport().equals(passport))
-               .findFirst()
-               .orElse(null);
+               .findFirst();
         }
 
     /**
@@ -69,8 +65,8 @@ public class BankService {
      * @return возвращет аккаунт, если такой есть, иначе возвращает null/
      */
     public Account findByRequisite(String passport, String requisite) {
-        var user = findByPassport(passport);
-        if (user != null) {
+        Optional<User> user = findByPassport(passport);
+        if (user.isPresent()) {
             return users.get(user)
                     .stream()
                     .filter(s -> s.getRequisite().equals(requisite))
