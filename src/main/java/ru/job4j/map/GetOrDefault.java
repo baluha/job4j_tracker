@@ -16,6 +16,5 @@ public class GetOrDefault {
 
     public List<String> getValue(int index) {
         return store.getOrDefault(index, new ArrayList<>());
-
     }
 }

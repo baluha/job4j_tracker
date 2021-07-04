@@ -27,4 +27,13 @@ public class ArProgressionTest {
         int rsl = ArProgression.checkData(data);
         assertThat(rsl, is(0));
     }
+
+    @Test
+    public void checkDataIs() {
+        List<Integer> data = List.of(
+                4, 8, 12, 16, 20, 24, 28, 32
+        );
+        int rsl = ArProgression.checkData(data);
+        assertThat(rsl, is(144));
+    }
 }

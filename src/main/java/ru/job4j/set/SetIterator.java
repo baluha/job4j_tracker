@@ -9,7 +9,9 @@ public class SetIterator {
         Set<String> strings = new TreeSet<>(Set.of("one", "two", "three", "four", "five"));
         Iterator<String> iterator = strings.iterator();
         while (iterator.hasNext()) {
-            System.out.println(String.format("Next element exist? - %s.", iterator.next()));
+            System.out.println(String.format("Next element exist? - "
+                    + iterator.hasNext()
+                    +  iterator.next()));
             System.out.println("Iteration is exist in this set");
         }
     }

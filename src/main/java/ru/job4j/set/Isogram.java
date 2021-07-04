@@ -4,12 +4,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Panagram {
+public class Isogram {
     public static boolean checkString(String s) {
-        String str = s.replaceAll(" ", "");
-        str.toLowerCase();
         Set<String> set = new HashSet<>();
-        set.addAll(Arrays.asList(str.split("")));
-        return set.size() == 26;
+        set.addAll(Arrays.asList(s.split("")));
+        return s.length() == set.size();
     }
 }

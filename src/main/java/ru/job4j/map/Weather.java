@@ -6,12 +6,12 @@ public class Weather {
     public static List<Info> editData(List<Info> list) {
         List<Info> rsl = new ArrayList<>();
         Map<String, Integer> map = new HashMap<>();
-        for (Info towns: list) {
-            map.computeIfPresent(towns.getCity(), (key, val) -> val + towns.getRainfall());
-            map.putIfAbsent(towns.getCity(), towns.getRainfall());
+        for (Info info: list) {
+            map.computeIfPresent(info.getCity(), (key, val) -> val + info.getRainfall());
+            map.putIfAbsent(info.getCity(), info.rainfall);
         }
-        for (String value: map.keySet()) {
-            rsl.add(new Info(value, map.get(value)));
+        for (String mp: map.keySet()) {
+            rsl.add(new Info(mp, map.get(mp)));
         }
         return rsl;
     }

@@ -1,19 +1,20 @@
 package ru.job4j.set;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Firewall {
     public static String checkName(String s, Set<String> words) {
-        String rsl = "Вы сделали правильный выбор!";
-        String[] ss = s.split(" ");
-        for (String word: words) {
-            for (String sWords: ss) {
-                if (word.equals(sWords)) {
-                    rsl = "Выберите другую статью...";
-                    break;
-                }
-            }
+        Set<String> set = new HashSet<>();
+        set.addAll(Arrays.asList(s.split(" ")));
+        int rsl = set.size() + words.size();
+        set.addAll(words);
+        int exp = set.size();
+        if (rsl == exp) {
+            return "Вы сделали правильный выбор!";
+        } else {
+            return "Выберите другую статью...";
         }
-        return rsl;
     }
 }

@@ -1,25 +1,16 @@
 package ru.job4j.map;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class PutIfAbsent {
-
-    private final Map<Integer, User> users;
-
-    public PutIfAbsent(Map<Integer, User> users) {
-        this.users = users;
-    }
-
-    public boolean addNewElement(User u) {
-        boolean rsl = false;
-        if (!users.containsKey(u.getId())) {
-            users.put(u.getId(), u);
-            rsl = true;
-        } else {
-            rsl = false;
+public class ComputeIfAbsent {
+    public static Map<Integer, String> collectData(Map<Integer, String> names, List<User> users) {
+        for (User user: users) {
+            names.computeIfPresent(user.getId(), (key, value) -> user.getName());
+            names.computeIfAbsent(user.getId(), val -> user.getName());
         }
-        return rsl;
+        return names;
     }
 
     public static class User {
@@ -35,6 +26,10 @@ public class PutIfAbsent {
             return id;
         }
 
+        public String getName() {
+            return name;
+        }
+
         @Override
         public boolean equals(Object o) {
             if (this == o) {
@@ -43,7 +38,7 @@ public class PutIfAbsent {
             if (o == null || getClass() != o.getClass()) {
                 return false;
             }
-            User user = (User) o;
+            ComputeIfAbsent.User user = (ComputeIfAbsent.User) o;
             return Objects.equals(name, user.name);
         }
 

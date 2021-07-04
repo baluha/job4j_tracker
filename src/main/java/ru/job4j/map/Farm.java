@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class Farm {
     public static int sumLegs(Map<Animal, Integer> data) {
-        int count = 0;
-        for (Animal val: data.keySet()) {
-           count += val.getLegs() * data.get(val);
+        int rsl = 0;
+        for (Animal quantity: data.keySet()) {
+            rsl += quantity.getLegs() * data.get(quantity);
         }
-        return count;
+        return rsl;
     }
 
     public static class Animal {
