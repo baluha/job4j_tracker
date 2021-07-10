@@ -99,7 +99,7 @@ public class BankService {
             boolean rsl = false;
             var src = findByRequisite(srcPassport, srcRequisite);
             var dest = findByRequisite(destPassport, destRequisite);
-            if (src != null && src.get().getBalance() >= amount && dest != null) {
+            if (src.get() != null && src.get().getBalance() >= amount && dest.get() != null) {
                 src.get().setBalance(src.get().getBalance() - amount);
                 dest.get().setBalance(dest.get().getBalance() + amount);
                 rsl = true;
