@@ -15,13 +15,26 @@ public class Item {
 
     private LocalDateTime created = LocalDateTime.now();
 
-    public Item(String name) {
-        this.name = name;
+
+    public Item() {
+
     }
 
     public Item(int id, String name, LocalDateTime created) {
         this.id = id;
         this.name = name;
+        this.created = created;
+    }
+
+    public Item(String name) {
+        this.name = name;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
