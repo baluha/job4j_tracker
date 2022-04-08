@@ -23,6 +23,9 @@ public class CreateAction implements UserAction {
     @Override
     public boolean execute(Input input, Store tracker) throws SQLException {
         String name = input.askStr("Enter name: ");
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("Item name is empty");
+        }
         Item item = new Item(name);
         tracker.add(item);
         out.println("Item successfully added!");

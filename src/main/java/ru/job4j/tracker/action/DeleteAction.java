@@ -4,6 +4,8 @@ import ru.job4j.tracker.Store;
 import ru.job4j.tracker.input.Input;
 import ru.job4j.tracker.output.Output;
 
+import java.sql.SQLException;
+
 public class DeleteAction implements UserAction {
 
     private final Output out;
@@ -18,7 +20,7 @@ public class DeleteAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Store tracker) {
+    public boolean execute(Input input, Store tracker) throws SQLException {
         int id = Integer.parseInt(input.askStr("Enter id: "));
         if (tracker.delete(id)) {
             out.println("Item is successfully deleted!");
