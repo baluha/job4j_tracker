@@ -49,7 +49,7 @@ public class SqlTracker implements Store, AutoCloseable {
                     item.setId(resultSet.getInt(1));
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             LOG.error("Exception in adding", e);
         }
         return item;
@@ -65,7 +65,7 @@ public class SqlTracker implements Store, AutoCloseable {
             preparedStatement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             preparedStatement.setInt(3, id);
             result = preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             LOG.error("Exception in replacing method", e);
         }
         return result;
@@ -78,7 +78,7 @@ public class SqlTracker implements Store, AutoCloseable {
                          cn.prepareStatement("delete from items where id = ?")) {
                 preparedStatement.setInt(1, id);
                 result = preparedStatement.executeUpdate() > 0;
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 LOG.error("Exception in delete method", e);
             }
             return result;
@@ -94,7 +94,7 @@ public class SqlTracker implements Store, AutoCloseable {
                     list.add(returningItem(resultSet));
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             LOG.error("All items successfully find!", e);
         }
         return list;
@@ -110,7 +110,7 @@ public class SqlTracker implements Store, AutoCloseable {
                     list.add(returningItem(resultSet));
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             LOG.error("Exception in findByName method", e);
         }
         return list;
@@ -126,7 +126,7 @@ public class SqlTracker implements Store, AutoCloseable {
                         item = returningItem(resultSet);
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             LOG.error("Exception in findById method", e);
         }
         return item;
