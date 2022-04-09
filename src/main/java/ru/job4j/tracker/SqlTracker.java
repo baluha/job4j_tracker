@@ -38,14 +38,7 @@ public class SqlTracker implements Store, AutoCloseable {
     }
 
     @Override
-    public Item add(Item item) throws SQLException {
-        if (item.getName().isBlank()) {
-            try {
-                throw new IllegalArgumentException("Item name not found");
-            } catch (IllegalArgumentException i) {
-                LOG.error("Name is empty", i);
-            }
-        }
+    public Item add(Item item)  {
         try (PreparedStatement preparedStatement = cn.prepareStatement("insert into items(name, created) values(?, ?)",
                 Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, item.getName());
@@ -56,23 +49,15 @@ public class SqlTracker implements Store, AutoCloseable {
                     item.setId(resultSet.getInt(1));
                 }
             }
-        }
-        if (!item.getName().isBlank()) {
-            LOG.info("Item successful added id : {}, name : {} !", item.getName(), item.getName());
+        } catch (SQLException e) {
+            LOG.error("Exception in adding", e);
         }
         return item;
         }
 
 
     @Override
-    public boolean replace(int id, Item item) throws SQLException {
-        if (item.getName().isBlank() || id <= 0) {
-            try {
-            throw new IllegalArgumentException("Item is empty or id does not exist!");
-        } catch (IllegalArgumentException i) {
-        LOG.error("log ", i);
-        }
-        }
+    public boolean replace(int id, Item item)  {
         boolean result = false;
         try (PreparedStatement preparedStatement =
                      cn.prepareStatement("update items set name = ?, created = ? where id = ?")) {
@@ -80,27 +65,22 @@ public class SqlTracker implements Store, AutoCloseable {
             preparedStatement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             preparedStatement.setInt(3, id);
             result = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            LOG.error("Exception in replacing method", e);
         }
-        LOG.info("Replacing successful!");
         return result;
     }
 
     @Override
-        public boolean delete(int id) throws SQLException {
-        if (id <= 0) {
-            try {
-                throw new IllegalArgumentException("Id does not exist!");
-            } catch (IllegalArgumentException i) {
-                LOG.error("log ", i);
-            }
-        }
+        public boolean delete(int id) {
             boolean result = false;
             try (PreparedStatement preparedStatement =
                          cn.prepareStatement("delete from items where id = ?")) {
                 preparedStatement.setInt(1, id);
                 result = preparedStatement.executeUpdate() > 0;
+            } catch (SQLException e) {
+                LOG.error("Exception in delete method", e);
             }
-        LOG.info("Item successful deleted !");
             return result;
         }
 
@@ -114,29 +94,14 @@ public class SqlTracker implements Store, AutoCloseable {
                     list.add(returningItem(resultSet));
                 }
             }
-        }
-        if (list.size() == 0) {
-            try {
-                throw new IllegalArgumentException("List is empty");
-            } catch (IllegalArgumentException i) {
-                LOG.error("log ", i);
-            }
-        }
-        if (list.size() > 0) {
-            LOG.info("All items successfully find!");
+        } catch (SQLException e) {
+            LOG.error("All items successfully find!", e);
         }
         return list;
     }
 
     @Override
     public List<Item> findByName(String key) throws SQLException {
-        if (key.isBlank()) {
-            try {
-            throw new IllegalArgumentException("key is empty");
-        } catch (IllegalArgumentException i) {
-            LOG.error("log ", i);
-        }
-        }
         List<Item> list = new ArrayList<>();
         try (PreparedStatement preparedStatement = cn.prepareStatement("select * from items where name = ?")) {
             preparedStatement.setString(1, key);
@@ -145,44 +110,24 @@ public class SqlTracker implements Store, AutoCloseable {
                     list.add(returningItem(resultSet));
                 }
             }
-        }
-        if (list.size() == 0) {
-            try {
-                throw new IllegalArgumentException("List is empty");
-            } catch (IllegalArgumentException i) {
-                LOG.error("log ", i);
-            }
-        }
-        if (list.size() > 0) {
-            LOG.info("All items successfully find!");
+        } catch (SQLException e) {
+            LOG.error("Exception in findByName method", e);
         }
         return list;
     }
 
     @Override
     public Item findById(int id) {
-        Item item = new Item();
+        Item item = null;
         try (PreparedStatement preparedStatement = cn.prepareStatement("select * from items where id = ?")) {
             preparedStatement.setInt(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
+                if (resultSet.next()) {
                         item = returningItem(resultSet);
-                        break;
                 }
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        if (item == null || item.getId() == 0) {
-            try {
-                throw new IllegalArgumentException("Item or item ID is null");
-            } catch (IllegalArgumentException i) {
-                LOG.error("log ", i);
-            }
-
-        }
-        if (item != null) {
-            LOG.info("Item find!");
+        } catch (SQLException e) {
+            LOG.error("Exception in findById method", e);
         }
         return item;
     }
