@@ -37,6 +37,13 @@ public class SqlTracker implements Store, AutoCloseable {
         }
     }
 
+    public SqlTracker() {
+    }
+
+    public SqlTracker(Connection cn) {
+        this.cn = cn;
+    }
+
     @Override
     public Item add(Item item)  {
         try (PreparedStatement preparedStatement = cn.prepareStatement("insert into items(name, created) values(?, ?)",
@@ -86,7 +93,7 @@ public class SqlTracker implements Store, AutoCloseable {
 
 
     @Override
-    public List<Item> findAll() throws SQLException {
+    public List<Item> findAll() {
         List<Item> list = new ArrayList<>();
         try (PreparedStatement preparedStatement = cn.prepareStatement("select * from items")) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -101,7 +108,7 @@ public class SqlTracker implements Store, AutoCloseable {
     }
 
     @Override
-    public List<Item> findByName(String key) throws SQLException {
+    public List<Item> findByName(String key) {
         List<Item> list = new ArrayList<>();
         try (PreparedStatement preparedStatement = cn.prepareStatement("select * from items where name = ?")) {
             preparedStatement.setString(1, key);
