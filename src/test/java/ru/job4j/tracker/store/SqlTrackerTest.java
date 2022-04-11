@@ -98,7 +98,7 @@ public void whenShowAll() {
         tracker.add(item);
         int id = tracker.findByName("blablabla").get(0).getId();
         tracker.delete(id);
-        assertThat(tracker.findAll(), is (new ArrayList<>()));
+        assertThat(tracker.findAll(), is(new ArrayList<>()));
     }
 }
 
