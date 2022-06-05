@@ -12,7 +12,7 @@ import java.util.List;
 
 public class StartUI {
 
-    public void init(Input input, SqlTracker tracker, List<UserAction> actions) throws SQLException {
+    public void init(Input input, SqlTracker tracker, List<UserAction> actions) throws SQLException, InterruptedException {
         boolean run = true;
         while (run) {
             showMenu(actions);

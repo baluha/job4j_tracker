@@ -47,6 +47,10 @@ public class MemTracker implements Store {
         return true;
     }
 
+    public void deleteAll() {
+        items.clear();
+    }
+
     public boolean delete(int id) {
         int index = indexOf(id);
         if (index == -1) {

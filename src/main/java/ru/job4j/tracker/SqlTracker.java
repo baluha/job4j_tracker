@@ -91,6 +91,11 @@ public class SqlTracker implements Store, AutoCloseable {
             return result;
         }
 
+    @Override
+    public void deleteAll() throws SQLException {
+
+    }
+
 
     @Override
     public List<Item> findAll() {

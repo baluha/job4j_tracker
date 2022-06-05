@@ -3,7 +3,8 @@ package ru.job4j.tracker.model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Item {
+public class ItemForGC {
+
 
     private static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -15,18 +16,22 @@ public class Item {
     private LocalDateTime created = LocalDateTime.now();
 
 
-    public Item() {
+    public ItemForGC() {
 
     }
 
-    public Item(int id, String name, LocalDateTime created) {
+    public ItemForGC(int id, String name, LocalDateTime created) {
         this.id = id;
         this.name = name;
         this.created = created;
     }
 
-    public Item(String name) {
+    public ItemForGC(String name) {
         this.name = name;
+    }
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.printf("Removed %s!!%n", name);
     }
 
     public LocalDateTime getCreated() {
@@ -58,4 +63,3 @@ public class Item {
         return String.format("id: %s, name: %s, created: %s", id, name, FORMATTER.format(created));
     }
 }
-
