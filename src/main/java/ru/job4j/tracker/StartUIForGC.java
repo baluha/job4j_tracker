@@ -17,7 +17,6 @@ import java.util.List;
                 Thread.sleep(10000);
                 UserAction action = actions.get(0);
                 action.execute(input, tracker);
-                Thread.sleep(2000);
                 UserAction deleteAction = actions.get(1);
                 deleteAction.execute(input, tracker);
         }

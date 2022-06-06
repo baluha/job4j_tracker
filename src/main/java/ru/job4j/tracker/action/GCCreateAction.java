@@ -22,7 +22,7 @@ public class GCCreateAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Store tracker) throws SQLException, InterruptedException {
-        for (int i = 0; i < 2000000; i++) {
+        for (int i = 0; i < 100000; i++) {
             String name = i + "_N";
             Thread.sleep(1);
             tracker.add(new Item(name));
