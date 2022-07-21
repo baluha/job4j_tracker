@@ -1,4 +1,4 @@
-package ru.job4j.tracker.inheritance;
+package ru.job4j.inheritance;
 
 public class PizzaExtraCheeseExtraTomato extends PizzaExtraCheese {
     public String name() {
