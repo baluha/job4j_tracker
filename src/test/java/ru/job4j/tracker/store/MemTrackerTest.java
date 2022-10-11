@@ -1,13 +1,13 @@
 package ru.job4j.tracker.store;
 
-import org.junit.Test;
+import org.junit.*;
 import ru.job4j.tracker.model.Item;
 
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MemTrackerTest {
 
