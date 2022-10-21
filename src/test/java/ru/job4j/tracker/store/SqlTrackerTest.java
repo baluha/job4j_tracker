@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SqlTrackerTest {
 
@@ -59,13 +59,25 @@ public class SqlTrackerTest {
         assertThat(tracker.findById(item.getId()), is(item));
     }
 
-/*    @Test
-    public void whenSaveItemAndFindByGeneratedIdThenMustBeTheSame() {
+    @Test
+    public void whenItemAdd() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item item = tracker.add(new Item("item"));
-        assertThat(tracker.findById(item.getId()), is(item));
-    }*/
-    @Ignore
+        Item item = new Item("item");
+        assertThat(tracker.add(item).getName(), is(item.getName()));
+    }
+
+    @Test
+    public void whenFindAll() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item = new Item("item");
+        Item item2 = new Item("item");
+        Item item3 = new Item("item");
+        tracker.add(item);
+        tracker.add(item2);
+        tracker.add(item3);
+        assertThat(tracker.findAll(), is(List.of(item, item2, item3)));
+    }
+
     @Test
     public void whenReplacingItem() {
         SqlTracker tracker = new SqlTracker(connection);
@@ -75,29 +87,19 @@ public class SqlTrackerTest {
         assertEquals(tracker.findById(item.getId()).getName(), item2.getName());
     }
 
-/*@Test
-public void whenShowAll() {
-    SqlTracker tracker = new SqlTracker(connection);
-    Item item1 = tracker.add(new Item("name1"));
-    Item item2 = tracker.add(new Item("name2"));
-    List<Item> list = tracker.findAll();
-    assertThat(list, is(List.of(item1, item2)));
-    }*/
-
-/*    @Test
+    @Test
     public void findByName() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item1 = tracker.add(new Item("blablabla"));
-        Item item2 = tracker.add(new Item("nanana"));
-        Item item3 = tracker.add(new Item("tulula"));
+        tracker.add(new Item("nanana"));
+        tracker.add(new Item("tulula"));
         assertThat(tracker.findByName(item1.getName()), is(List.of(item1)));
-    }*/
+    }
 
-    @Ignore
     @Test
     public void delete() {
         SqlTracker tracker = new SqlTracker(connection);
-        Item item = tracker.add(new Item("blablabla"));
+        tracker.add(new Item("blablabla"));
         int id = tracker.findByName("blablabla").get(0).getId();
         tracker.delete(id);
         assertThat(tracker.findAll(), is(new ArrayList<>()));
