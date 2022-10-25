@@ -82,7 +82,7 @@ public class SqlTrackerTest {
     public void whenReplacingItem() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = tracker.add(new Item("item"));
-        Item item2 = tracker.add(new Item("item2"));
+        Item item2 = new Item("item2");
         tracker.replace(item.getId(), item2);
         assertEquals(tracker.findById(item.getId()).getName(), item2.getName());
     }
@@ -99,9 +99,8 @@ public class SqlTrackerTest {
     @Test
     public void delete() {
         SqlTracker tracker = new SqlTracker(connection);
-        tracker.add(new Item("blablabla"));
-        int id = tracker.findByName("blablabla").get(0).getId();
-        tracker.delete(id);
+        Item item = tracker.add(new Item("blablabla"));
+        tracker.delete(item.getId());
         assertThat(tracker.findAll(), is(new ArrayList<>()));
     }
 }
