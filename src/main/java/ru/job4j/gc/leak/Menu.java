@@ -15,17 +15,14 @@ public class Menu {
     public static final String TEXT_OF_POST = "Введите текст";
     public static final String EXIT = "Конец работы";
     public static final String DELETE_ALL = "Удаляем все";
-    public static final String SEPARATOR = System.lineSeparator();
 
-    public static final String MENU = "Введите 1 для создание поста. "
-            + SEPARATOR
-            + "Введите 2, чтобы создать определенное количество постов."
-            + SEPARATOR
-            + "Введите 3, чтобы показать все посты."
-            + SEPARATOR
-            + "Введите 4, чтобы удалить все посты."
-            + SEPARATOR
-            + "Введите любое другое число для выхода.";
+    public static final String MENU = """
+                Введите 1 для создание поста.
+                Введите 2, чтобы создать определенное количество постов.
+                Введите 3, чтобы показать все посты.
+                Введите 4, чтобы удалить все посты.
+                Введите любое другое число для выхода.
+            """;
 
     public static void main(String[] args) {
         Random random = new Random();
