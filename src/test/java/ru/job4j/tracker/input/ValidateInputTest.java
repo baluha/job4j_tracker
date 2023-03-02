@@ -61,7 +61,7 @@ public class ValidateInputTest {
         when(input.askStr(any(String.class))).thenReturn(replacedName);
         rep.execute(input, tracker);
         String ln = System.lineSeparator();
-        assertThat(out.toString(), is("Item is successfully replaced!\r\n"));
+        assertThat(out.toString(), is("Item is successfully replaced!" + ln));
         assertThat(tracker.findAll().get(0).getName(), is(replacedName));
     }
 
@@ -72,9 +72,10 @@ public class ValidateInputTest {
         tracker.add(new Item("Replaced item"));
         DeleteAction del = new DeleteAction(out);
         Input input = mock(Input.class);
+        String ln = System.lineSeparator();
         when(input.askInt(any(String.class))).thenReturn(0);
         del.execute(input, tracker);
-        assertThat(out.toString(), is("Item is successfully deleted!\r\n"));
+        assertThat(out.toString(), is("Item is successfully deleted!" + ln));
         assertThat(tracker.findAll().size(), is(0));
     }
 
